@@ -1,6 +1,7 @@
 # Indian GST-Ready Invoice Generator (Frontend-Only)
 
 Production-grade React + TypeScript web app for generating GST-ready invoices with a **side-by-side live preview**, strong validation UX, print/PDF export, and session-first persistence.
+<img width="1407" height="1255" alt="image" src="https://github.com/user-attachments/assets/71f7bccc-4285-45fa-b890-496b040bd2fc" />
 
 ## Tech Stack
 
