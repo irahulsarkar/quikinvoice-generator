@@ -252,7 +252,7 @@ export const InvoiceBuilderLayout = ({
     <>
       <div className={`responsive-builder-layout ${isPreviewVisible ? 'with-preview' : ''}`}>
         <div className="responsive-main-column space-y-4">
-          <div className="rounded-3xl border border-[#e5e5ea] bg-white/90 p-4 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur">
+          <div className="rounded-3xl border border-[#e5e5ea] bg-white/90 p-4 shadow-[0_10px_30px_rgba(15,23,42,0.05)] backdrop-blur toolbar-card">
             <div className="toolbar-heading-wrap mb-2">
               <p className="toolbar-heading text-xs font-semibold uppercase tracking-[0.16em] text-[#6e6e73]">
                 Toolbar

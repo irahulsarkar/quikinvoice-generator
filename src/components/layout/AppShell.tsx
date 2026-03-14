@@ -9,11 +9,26 @@ import { EraserIcon, MenuIcon, SparkIcon, XIcon } from '../common/ActionIcons';
 import { AppFooter } from '../common/AppFooter';
 import { LandingPage } from './LandingPage';
 
+const isLikelyMobileViewport = () => {
+  if (typeof window === 'undefined') {
+    return false;
+  }
+
+  const isNarrowScreen = window.matchMedia('(max-width: 1024px)').matches;
+  const ua = navigator.userAgent || '';
+  const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+  const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 1;
+
+  return isNarrowScreen || (isMobileUA && hasTouch);
+};
+
 export const AppShell = () => {
   const previewRef = useRef<HTMLDivElement | null>(null);
   const textIconClass = 'inline-flex items-center gap-1.5';
   const [showLanding, setShowLanding] = useState(true);
   const [isNavOpen, setNavOpen] = useState(false);
+  const [isMobileBlocked, setIsMobileBlocked] = useState(() => isLikelyMobileViewport());
+  const [mobileOverride, setMobileOverride] = useState(false);
 
   const seller = useInvoiceStore(invoiceSelectors.seller);
   const buyer = useInvoiceStore(invoiceSelectors.buyer);
@@ -70,6 +85,14 @@ export const AppShell = () => {
     document.documentElement.classList.remove('dark');
   }, [layoutSettings.darkMode, updateLayoutSettings]);
 
+  useEffect(() => {
+    const handleViewportChange = () => setIsMobileBlocked(isLikelyMobileViewport());
+
+    handleViewportChange();
+    window.addEventListener('resize', handleViewportChange);
+    return () => window.removeEventListener('resize', handleViewportChange);
+  }, []);
+
   if (showLanding) {
     return (
       <div className="app-canvas h-[100dvh] overflow-hidden text-[#1d1d1f]">
@@ -77,6 +100,38 @@ export const AppShell = () => {
         <div className="pointer-events-none fixed inset-x-0 bottom-3 z-30 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-[1320px] pointer-events-auto">
             <AppFooter className="mt-0" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isMobileBlocked && !mobileOverride) {
+    return (
+      <div className="mobile-blocker">
+        <div className="mobile-blocker__card">
+          <h1>QuikInvoice works best on a wider screen</h1>
+          <p className="mobile-blocker__body">
+            The invoice builder is designed for laptops and desktops. Please reopen this link on a desktop browser for the full experience.
+          </p>
+          <p className="mobile-blocker__hint">
+            Tip: email or copy the link to yourself and open it on your computer.
+          </p>
+          <div className="mobile-blocker__actions">
+            <button
+              type="button"
+              className="mobile-blocker__primary"
+              onClick={() => setMobileOverride(true)}
+            >
+              Continue on this device
+            </button>
+            <button
+              type="button"
+              className="mobile-blocker__ghost"
+              onClick={() => window.open(window.location.href, '_blank')}
+            >
+              Open in new tab
+            </button>
           </div>
         </div>
       </div>

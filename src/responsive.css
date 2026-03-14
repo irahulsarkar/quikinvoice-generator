@@ -103,6 +103,10 @@ textarea {
 
 .responsive-navbar {
   margin-bottom: var(--space-4);
+  position: sticky;
+  top: var(--space-4);
+  z-index: 30;
+  backdrop-filter: blur(10px);
 }
 
 .responsive-navbar-top {
@@ -171,6 +175,12 @@ textarea {
   letter-spacing: 0.16em;
 }
 
+.toolbar-card {
+  position: sticky;
+  top: calc(var(--space-4) + 8px);
+  z-index: 20;
+}
+
 .responsive-builder-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -181,6 +191,14 @@ textarea {
 .responsive-main-column,
 .responsive-preview {
   min-width: 0;
+}
+
+.responsive-preview {
+  position: sticky;
+  top: var(--space-4);
+  max-height: calc(100dvh - 2rem);
+  overflow: auto;
+  z-index: 10;
 }
 
 .responsive-preview-panel {

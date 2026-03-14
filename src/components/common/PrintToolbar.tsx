@@ -1,9 +1,8 @@
 import { useRef } from 'react';
 import type { InvoiceDraft } from '../../types/invoice';
-import { exportInvoiceToPdf, generateInvoicePdfBlob } from '../../utils/pdf';
+import { generateInvoicePdfBlob } from '../../utils/pdf';
 import { exportDraftJson, readDraftFile } from '../../utils/storage';
 import {
-  DownloadIcon,
   FileCodeIcon,
   MailIcon,
   PrinterIcon,
@@ -94,19 +93,6 @@ export const PrintToolbar = ({
     window.setTimeout(() => window.print(), 240);
   };
 
-  const onExportPdf = async () => {
-    if (!previewRef.current) {
-      return;
-    }
-
-    await exportInvoiceToPdf({
-      container: previewRef.current,
-      fileName: pdfFileName,
-      pageSize,
-      orientation,
-    });
-  };
-
   const onShareWhatsApp = async () => {
     if (!draft.buyer.phone.trim()) {
       window.alert('Add buyer phone number to share on WhatsApp.');
@@ -183,7 +169,6 @@ export const PrintToolbar = ({
   };
 
   const printDisabled = !canExport || !previewVisible;
-  const exportPdfDisabled = !canExport || !previewVisible;
   const disabledClass = (disabled: boolean) => (disabled ? 'opacity-50 cursor-not-allowed' : '');
 
   return (
@@ -208,18 +193,6 @@ export const PrintToolbar = ({
         <span className={textIconClass}>
           <SettingsIcon className="h-3.5 w-3.5" />
           Print settings
-        </span>
-      </button>
-      <button
-        type="button"
-        disabled={exportPdfDisabled}
-        onClick={onExportPdf}
-        className={`rounded-lg bg-[#1d1d1f] px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#000000] ${disabledClass(exportPdfDisabled)}`}
-        title={previewVisible ? undefined : 'Open invoice preview to export PDF'}
-      >
-        <span className={textIconClass}>
-          <DownloadIcon className="h-3.5 w-3.5" />
-          Export PDF
         </span>
       </button>
       <button

@@ -89,9 +89,9 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="landing-showcase-grid mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <article
-            className="landing-reveal landing-showcase-card bg-gradient-to-br from-[#f7f5ef] to-[#dbd7cd]"
+            className="landing-reveal landing-showcase-card landing-showcase-slide bg-gradient-to-br from-[#f7f5ef] to-[#dbd7cd]"
             style={revealStyle(240)}
           >
             <div className="mx-auto mt-4 h-[62%] max-h-[215px] min-h-[140px] w-[min(165px,72%)] rounded-[24px] bg-[#090d13] p-3 shadow-[0_14px_34px_rgba(0,0,0,0.38)]">
@@ -114,7 +114,7 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
           </article>
 
           <article
-            className="landing-reveal landing-showcase-card hidden bg-gradient-to-br from-[#ebe8df] to-[#d9d4c8] sm:block"
+            className="landing-reveal landing-showcase-card landing-showcase-slide bg-gradient-to-br from-[#ebe8df] to-[#d9d4c8] sm:block"
             style={revealStyle(300)}
           >
             <div className="mx-auto mt-4 h-[62%] max-h-[205px] min-h-[135px] w-[88%] rounded-2xl border border-[#99948a] bg-[#171b23] p-2 shadow-[0_14px_34px_rgba(0,0,0,0.28)]">
@@ -142,7 +142,7 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
           </article>
 
           <article
-            className="landing-reveal landing-showcase-card hidden bg-gradient-to-br from-[#f2efe6] to-[#ddd8cc] lg:block"
+            className="landing-reveal landing-showcase-card landing-showcase-slide bg-gradient-to-br from-[#f2efe6] to-[#ddd8cc] lg:block"
             style={revealStyle(360)}
           >
             <div className="mx-auto mt-4 w-[88%] rounded-2xl border border-[#d6d2c7] bg-white p-4 shadow-[0_12px_30px_rgba(25,25,25,0.12)]">
@@ -165,7 +165,7 @@ export const LandingPage = ({ onGetStarted }: LandingPageProps) => {
           </article>
 
           <article
-            className="landing-reveal landing-showcase-card hidden bg-gradient-to-br from-[#ebe8df] via-[#dfdbd0] to-[#d5d0c4] xl:block"
+            className="landing-reveal landing-showcase-card landing-showcase-slide bg-gradient-to-br from-[#ebe8df] via-[#dfdbd0] to-[#d5d0c4] xl:block"
             style={revealStyle(420)}
           >
             <div className="mx-auto mt-4 h-[66%] max-h-[230px] min-h-[150px] w-[min(170px,72%)] rotate-[9deg] rounded-[26px] border border-[#a59f95] bg-[#10151d] p-3 shadow-[0_20px_35px_rgba(0,0,0,0.25)]">
